@@ -9,6 +9,8 @@ import Index from "./routes/Index";
 import SignIn from "./routes/SignIn";
 import SignUp from "./routes/SignUp";
 import SignOut from "./routes/SignOut";
+import Settings from "./routes/Settings";
+import AddFriend from './routes/AddFriend';
 
 
 const inDevelopement = true;
@@ -40,7 +42,9 @@ export default function App() {
         <div>
             <Navbar />
             <Routes>
-                <Route exact path="/" element={<Index />} />
+                <Route exact path="/" element={<Index token={token} />} />
+                <Route exact path="/add_friend" element={<AddFriend />} />
+                <Route exact path="/settings" element={<Settings token={token} setToken={setToken} />} />
                 <Route exact path="/signout" element={<SignOut setToken={setToken} />} />
             </Routes>
             <Footer />

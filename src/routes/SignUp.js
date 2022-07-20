@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { URL, signinUser } from '../Utils';
 import PropTypes from 'prop-types';
-import ErrorList from "../components/ErrorList";
+import Alert from "../components/Alert";
 
 
 export default function SignUp({ setToken }) {
-    const [errors, setErrors] = useState([]);
+    const [alerts, setAlerts] = useState([]);
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -21,6 +21,7 @@ export default function SignUp({ setToken }) {
     }
 
     async function onSubmit(e) {
+        setAlerts([]);
         e.preventDefault();
 
         const user = {
@@ -42,15 +43,15 @@ export default function SignUp({ setToken }) {
         .then((res) => res.json())
         .then((res) => {
             if (res.appStatus === 0) {
-                setErrors([res.msg]);
+                setAlerts([{msg: res.msg, type: "danger"}]);
             }
         })
         .catch((error) => {
-            setErrors([error]);
+            setAlerts([{msg: error, type: "danger"}]);
             return;
         });
-        await signinUser(user.email, user.password, setToken, setErrors);
-        if (errors.length === 0) navigate("/");
+        await signinUser(user.email, user.password, setToken, setAlerts);
+        if (alerts.length === 0) navigate("/");
     }
 
     return (
@@ -59,10 +60,11 @@ export default function SignUp({ setToken }) {
                 <h1
                     className="fw-bold mb-4"
                 >
+                    <i className="fa-solid fa-user-plus"></i>
                     Sign Up
                 </h1>
 
-                <ErrorList errors={errors} />
+                <Alert alerts={alerts} />
 
                 <div className="form-group">
                     <label htmlFor="first_name">First Name</label> 

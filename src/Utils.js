@@ -1,7 +1,7 @@
 
 export const URL = "http://localhost:3000";
 
-export async function signinUser(email, password, setToken, setErrors) {
+export async function signinUser(email, password, setToken, setAlerts) {
     return fetch(URL + "/user/signin", {
         method: "POST",
         headers: {
@@ -12,7 +12,7 @@ export async function signinUser(email, password, setToken, setErrors) {
     .then((res) => res.json())
     .then((res) => {
         if (res.appStatus === 0) {
-            setErrors([res.msg]);
+            setAlerts([{msg: res.msg, type: "danger"}]);
         }
         else {
             setToken((p) => {
@@ -22,6 +22,6 @@ export async function signinUser(email, password, setToken, setErrors) {
         }
     })
     .catch((error) => {
-        setErrors([error]);
+        setAlerts([{msg: error, type: "danger"}]);
     });
 }

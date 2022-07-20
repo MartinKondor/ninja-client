@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { URL, signinUser } from '../Utils';
+import { signinUser } from '../Utils';
 import PropTypes from 'prop-types';
-import ErrorList from "../components/ErrorList";
+import Alert from "../components/Alert";
 
 
 export default function SignIn({ setToken }) {
-    const [errors, setErrors] = useState([]);
+    const [alerts, setAlerts] = useState([]);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,14 +17,15 @@ export default function SignIn({ setToken }) {
     }
 
     async function onSubmit(e) {
+        setAlerts([]);
         e.preventDefault();
 
         const user = {
             email: email,
             password: password,
         };
-        await signinUser(user.email, user.password, setToken, setErrors);
-        if (errors.length === 0) navigate("/");
+        await signinUser(user.email, user.password, setToken, setAlerts);
+        if (alerts.length === 0) navigate("/");
     }
 
     return (
@@ -33,10 +34,11 @@ export default function SignIn({ setToken }) {
                 <h1
                     className="fw-bold mb-4 h1"
                 >
+                    <i className="fa-solid fa-arrow-right-to-bracket"></i>
                     Sign In
                 </h1>
 
-                <ErrorList errors={errors} />
+                <Alert alerts={alerts} />
 
                 <div className="form-group">
                     <label htmlFor="email">Email</label> 

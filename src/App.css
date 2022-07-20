@@ -26,11 +26,7 @@ footer {
 }
 
 input, button, a.btn, textarea {
-    border-radius: 5px !important;
-}
-
-.auth-form > h1 {
-    
+    border-radius: 1px !important;
 }
 
 .nice-link {

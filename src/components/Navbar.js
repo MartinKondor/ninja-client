@@ -6,7 +6,7 @@ export default function Navbar() {
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <NavLink className="navbar-brand" to="/">
-                    <img src="logo192.png" width={50} />
+                    <img src="logo192.png" alt="ninja-logo" width={50} />
                 </NavLink>
                 <button
                     className="navbar-toggler"
@@ -22,6 +22,30 @@ export default function Navbar() {
             
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/">
+                                Messages
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/add_friend">
+                                Add Friend
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/create_group">
+                                Create Group
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/settings">
+                                Settings
+                            </NavLink>
+                        </li>
 
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/signout">
