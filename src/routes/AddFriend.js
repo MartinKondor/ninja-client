@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Alert from "../components/Alert";
+import { URL } from "../Utils";
+import PropTypes from 'prop-types';
 
 
-export default function AddFriend() {
+export default function AddFriend({ token }) {
     const [alerts, setAlerts] = useState([]);
     const [email, setEmail] = useState("");
 
@@ -10,8 +12,32 @@ export default function AddFriend() {
         setter(target.value);
     }
 
-    async function onSubmit() {
-        return 0;
+    async function onSubmit(e) {
+        setAlerts([]);
+        e.preventDefault();
+
+        const form = {
+            email: token.email,
+            other_email: email
+        };
+
+        await fetch(URL + "/group/add_friend", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(form),
+        })
+        .then((res) => res.json())
+        .then((res) => {
+            if (res.appStatus === 0) {
+                return setAlerts([{msg: res.msg, type: "danger"}]);
+            }
+            return setAlerts([{msg: res.msg, type: "success"}]);
+        })
+        .catch((error) => {
+            return setAlerts([{msg: error, type: "danger"}]);
+        });
     }
 
     return (
@@ -48,4 +74,8 @@ export default function AddFriend() {
             </form>
         </div>
     );
+};
+
+AddFriend.propTypes = {
+    token: PropTypes.object.isRequired,
 };

@@ -36,6 +36,12 @@ export default function Navbar() {
                         </li>
 
                         <li className="nav-item">
+                            <NavLink className="nav-link" to="/friends">
+                                Friends
+                            </NavLink>
+                        </li>
+
+                        <li className="nav-item">
                             <NavLink className="nav-link" to="/create_group">
                                 Create Group
                             </NavLink>
