@@ -31,6 +31,7 @@ export default function Index({ token }) {
             null, null, null, null, null, null]);
 
         // Asks server for data
+        /*
         async function fetchData(sendJson) {
             await fetch(URL + "/group", {
                 method: "POST",
@@ -54,6 +55,7 @@ export default function Index({ token }) {
         fetchData({
             id: token._id
         });
+        */
 
     }, []);
 
