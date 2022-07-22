@@ -39,7 +39,7 @@ export default function Settings({ token, setToken }) {
             if (res.appStatus === 0) {
                 return setAlerts([{msg: res.msg, type: 'danger'}]);
             }
-            return setAlerts([{msg: "Changes successfully saved!", type: "success"}]);
+            return setAlerts([{msg: res.msg, type: "success"}]);
         });
 
         // Change token based on new data

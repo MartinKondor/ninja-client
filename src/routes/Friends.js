@@ -32,13 +32,13 @@ export default function Friends({ token }) {
                 if (res.appStatus === 0) {
                     return setAlerts([{msg: res.msg, type: "danger"}]);
                 }
-
-                if (!isLoaded) {
-                    setIsLoaded(true);
-                    setFriends([]);
+                if (res.result.is_active) {
+                    if (!isLoaded) {
+                        setIsLoaded(true);
+                        setFriends([]);
+                    }
+                    setFriends([...friends, res.result]);
                 }
-                setFriends([...friends, res.result]);
-                
             })
             .catch((error) => {
                 setAlerts([{msg: error, type: "danger"}]);
@@ -60,9 +60,9 @@ export default function Friends({ token }) {
                 if (res.appStatus === 0) {
                     return setAlerts([{msg: res.msg, type: "danger"}]);
                 }
-                for (let u of res.result) {
-                    fetchFriendsData({id: u});
-                }
+                return res.result.map((u) => {
+                    return fetchFriendsData({id: u});
+                });
             })
             .catch((error) => {
                 setAlerts([{msg: error, type: "danger"}]);

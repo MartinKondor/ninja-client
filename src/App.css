@@ -87,4 +87,8 @@ a:after,
         margin-left: 0vw !important;
         margin-right: 0vw !important;
     }
+
+    .non-mobile {
+        display: none;
+    }
 }
