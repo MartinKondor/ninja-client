@@ -1,4 +1,9 @@
-- More secure authentication system
-- Hamburger menu doesnt work
-- Built in profile pictures like in storybox
-- 
+[x] More secure authentication system
+[] Hamburger menu doesnt work
+[] Built in profile pictures like in storybox
+[xxx] Footer routes
+[] Legal checkbox on sign up page
+[] Download all my data option
+[] Remove all my data option
+[] Change navbar depending on token
+[] Unsubscribe newsletter option

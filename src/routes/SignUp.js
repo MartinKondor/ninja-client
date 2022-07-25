@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { URL, signinUser } from '../Utils';
 import PropTypes from 'prop-types';
@@ -14,6 +14,7 @@ export default function SignUp({ setToken }) {
     const [password2, setPassword2] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [agreement, setAgreement] = useState("");
     const navigate = useNavigate();
 
     function getFormValue({ target }, setter) {
@@ -23,6 +24,11 @@ export default function SignUp({ setToken }) {
     async function onSubmit(e) {
         setAlerts([]);
         e.preventDefault();
+
+        if (!agreement) {
+            
+            return;
+        }
 
         const user = {
             first_name: firstName,
@@ -60,7 +66,7 @@ export default function SignUp({ setToken }) {
                 <h1
                     className="fw-bold mb-4"
                 >
-                    <i className="fa-solid fa-user-plus"></i>
+                    <i className="fa-solid fa-user-plus pe-2"></i>
                     Sign Up
                 </h1>
 
@@ -139,15 +145,34 @@ export default function SignUp({ setToken }) {
                     />
                 </div>
 
+                <div className="form-group">
+                    <label className="small text-muted">You agree that we can contact You, send You emails regarding to Your account on this site.</label> 
+                    <input 
+                        id="agreement"
+                        type="checkbox"
+                        name="agreement"
+                        checked={agreement}
+                        onChange={() => setAgreement(a => a === "on" ? "": "on")}
+                        required=""
+                    />
+                    <label htmlFor="agreement" className="ms-2">
+                        I agree
+                    </label> 
+                </div>
+
                 <span>
                     <Link to="/signin">Already have an account?</Link>
                 </span>
 
                 <button
                     type="submit"
-                    className="btn btn-info btn-block btn-lg mt-2 mb-5" >
+                    className="btn btn-info btn-block btn-lg mt-2 mb-1" >
                     Sign Up
                 </button>
+
+                <span className="small text-muted mb-5">
+                    By clickling "Sign Up" you agree to NINJA's <a href="/legal">Privacy Policy</a>.
+                </span>
 
                 {/*
                 <button

@@ -34,7 +34,7 @@ export default function SignIn({ setToken }) {
                 <h1
                     className="fw-bold mb-4 h1"
                 >
-                    <i className="fa-solid fa-arrow-right-to-bracket"></i>
+                    <i className="fa-solid fa-arrow-right-to-bracket pe-2"></i>
                     Sign In
                 </h1>
 
@@ -71,7 +71,7 @@ export default function SignIn({ setToken }) {
 
                 <button
                     type="submit"
-                    className="btn btn-info btn-block btn-lg mt-2 mb-5" >
+                    className="btn btn-info btn-block btn-lg mt-2 mb-2" >
                     Sign In
                 </button>
 

@@ -46,7 +46,7 @@ export default function AddFriend({ token }) {
                 <h1
                     className="fw-bold mb-4"
                 >
-                    <i className="fa-solid fa-circle-nodes"></i>
+                    <i className="fa-solid fa-circle-nodes ps-2"></i>
                     Add Friend
                 </h1>
 

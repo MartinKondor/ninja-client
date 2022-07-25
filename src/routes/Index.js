@@ -4,9 +4,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import Alert from "../components/Alert";
 import PropTypes from 'prop-types';
 import { URL } from "../Utils";
+//import { MessageRow } from "../components/MessageRow";
+
+
+function MessageRow(group) {
+    return (<div>a</div>); 
+}
 
 
 export default function Index({ token }) {
+    const [isLoaded, setIsLoaded] = useState(false);
     const [alerts, setAlerts] = useState([]);
     const [groups, setGroups] = useState([]);
     const [messages, setMessages] = useState([]);
@@ -69,7 +76,11 @@ export default function Index({ token }) {
                     {/** List of people/groups we are in contact with */}
                     {groups.map((g, i) => (
                         <div key={i}>
-                            <p>{g || <Skeleton />}</p>
+                            {isLoaded ?
+                                <MessageRow group={g} />
+                            :
+                                <Skeleton />
+                            }
                         </div>
                     ))}
 

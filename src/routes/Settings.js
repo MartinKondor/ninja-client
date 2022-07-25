@@ -63,7 +63,7 @@ export default function Settings({ token, setToken }) {
                 <h1
                     className="fw-bold mb-4 h1"
                 >
-                    <i className="fa-solid fa-gear"></i>
+                    <i className="fa-solid fa-gear pe-2"></i>
                     Settings
                 </h1>
 
